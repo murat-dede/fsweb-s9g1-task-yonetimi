@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import * as Yup from "yup";
+import {useForm} from 'react-hook-form';
 
 const formSemasi = Yup.object().shape({
   title: Yup.string()
@@ -15,6 +16,7 @@ const formSemasi = Yup.object().shape({
 });
 
 const TaskForm = ({ kisiler, submitFn }) => {
+  const {register,handleSubmit} = useForm()
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -84,7 +86,7 @@ const TaskForm = ({ kisiler, submitFn }) => {
   }
 
   // task ekleme
-  function handleSubmit(e) {
+  function handleSubmitAction(e) {
     e.preventDefault();
     submitFn({
       ...formData,
